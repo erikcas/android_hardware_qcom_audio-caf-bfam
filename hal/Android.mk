@@ -108,16 +108,12 @@ ifeq ($(strip $(AUDIO_FEATURE_ENABLED_COMPRESS_CAPTURE)),true)
     LOCAL_SRC_FILES += audio_extn/compress_capture.c
 endif
 
-ifeq ($(strip $(DOLBY_DDP)),true)
+ifneq ($(strip $(AUDIO_FEATURE_DISABLED_DS1_DOLBY_DAP)),true)
+    LOCAL_CFLAGS += -DDS1_DOLBY_DAP_ENABLED
+ifneq ($(strip $(AUDIO_FEATURE_DISABLED_DS1_DOLBY_DDP)),true)
     LOCAL_CFLAGS += -DDS1_DOLBY_DDP_ENABLED
     LOCAL_C_INCLUDES += $(TARGET_OUT_INTERMEDIATES)/KERNEL_OBJ/usr/include
-    LOCAL_ADDITIONAL_DEPENDENCIES += $(TARGET_OUT_INTERMEDIATES)/KERNEL_OBJ/usr
-    LOCAL_SRC_FILES += audio_extn/dolby.c
-endif
-
-ifeq ($(strip $(DOLBY_DAP)),true)
-    LOCAL_CFLAGS += -DDS1_DOLBY_DAP_ENABLED
-ifneq ($(strip $(DOLBY_DDP)),true)
+    LOCAL_ADDITIONAL_DEPENDENCIES += $(TARGET_OUT_INTERMEDIATES)/KERNEL_OBJ/us
     LOCAL_SRC_FILES += audio_extn/dolby.c
 endif
 endif
