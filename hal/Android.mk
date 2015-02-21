@@ -85,7 +85,7 @@ ifeq ($(strip $(AUDIO_FEATURE_ENABLED_INCALL_MUSIC)),true)
 endif
 endif
 
-ifeq ($(strip $(AUDIO_FEATURE_ENABLED_COMPRESS_VOIP)),true)
+ifneq ($(strip $(AUDIO_FEATURE_DISABLED_COMPRESS_VOIP)),true)
     LOCAL_CFLAGS += -DCOMPRESS_VOIP_ENABLED
     LOCAL_SRC_FILES += voice_extn/compress_voip.c
 endif
@@ -110,7 +110,7 @@ ifeq ($(strip $(AUDIO_FEATURE_ENABLED_COMPRESS_CAPTURE)),true)
     LOCAL_SRC_FILES += audio_extn/compress_capture.c
 endif
 
-ifeq ($(strip $(DOLBY_DDP)),true)
+ifneq ($(strip $(AUDIO_FEATURE_DISABLED_DS1_DOLBY_DDP)),true)
     LOCAL_CFLAGS += -DDS1_DOLBY_DDP_ENABLED
     LOCAL_SRC_FILES += audio_extn/dolby.c
 endif

@@ -275,4 +275,10 @@ struct csd_data {
 #define SAMPLE_RATE_16KHZ 16000
 
 
+//taken from platform.c
+
+#define SAMPLE_RATE_8KHZ  8000
+#define SAMPLE_RATE_16KHZ 16000
+
+
 #endif // QCOM_AUDIO_PLATFORM_H
